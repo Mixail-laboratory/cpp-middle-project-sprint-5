@@ -1,5 +1,9 @@
 #pragma once
 #include "geometry.hpp"
+#include "queries.hpp"
+#include <algorithm>
+#include <iterator>
+#include <optional>
 #include <utility>
 #include <vector>
 

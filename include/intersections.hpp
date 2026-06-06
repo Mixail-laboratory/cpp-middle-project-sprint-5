@@ -80,8 +80,6 @@ public:
     std::optional<Point2D> operator()(T &&lhs, U &&rhs) const {
         throw std::logic_error("invalid types");
     }
-
-    /* ваш код здесь */
 };
 
 inline std::optional<Point2D> GetIntersectPoint(const Shape &shape1, const Shape &shape2) { return std::nullopt; }

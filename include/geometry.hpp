@@ -5,6 +5,7 @@
 #include <format>
 #include <numbers>
 #include <ranges>
+#include <string_view>
 #include <variant>
 #include <vector>
 
@@ -285,6 +286,7 @@ struct std::formatter<std::vector<geometry::Point2D>> {
 
     constexpr auto parse(std::format_parse_context &ctx) {
         auto it = ctx.begin();
+        std::string_view str(it);
 
         /* ваш код здесь */
 
@@ -293,9 +295,10 @@ struct std::formatter<std::vector<geometry::Point2D>> {
 
     template <typename FormatContext>
     auto format(const std::vector<geometry::Point2D> &v, FormatContext &ctx) {
-
-        /* ваш код здесь */
-        return ctx.out();
+        auto out = ctx.out();
+        std::ranges::for_each(
+            v, [&out](const geometry::Point2D &point) { out = std::format_to(out, "({}, {})", point.x, point.y); });
+        return out;
     }
 };
 
