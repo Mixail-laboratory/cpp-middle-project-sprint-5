@@ -2,6 +2,7 @@
 #include "geometry.hpp"
 #include "queries.hpp"
 #include <functional>
+#include <iterator>
 #include <optional>
 #include <ranges>
 #include <vector>
@@ -248,6 +249,6 @@ std::optional<size_t> FindHighestShape(std::span<const Shape> shapes) {
         return std::nullopt;
     }
     auto it = std::ranges::max_element(shapes, {}, [](const Shape iShape) { return queries::GetHeight(iShape); });
-    return queries::GetHeight(*it);
+    return std::ranges::distance(shapes.begin(), it);
 }
 }  // namespace geometry::utils
